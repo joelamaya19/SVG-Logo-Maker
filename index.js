@@ -63,7 +63,7 @@ function generateSVG(text, textColor, shape, shapeColor) {
     const svg = `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     ${shapeObj.render()}
     <text x="150" y="150" font-size="60" text-anchor="middle" fill="${textColor}">${text}</text>
-  </svg>`;
+</svg>`;
 
   fs.writeFile('./examples/logo.svg', svg, (err) => {
     if (err) {
