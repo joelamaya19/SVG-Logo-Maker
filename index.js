@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const { Circle, Triangle, Square } = require('./lib/shapes.js');
+const { Circle, Triangle, Square } = require('./lib/shapes');
 
 function promptUser() {
     return new Promise((resolve, reject) => {
@@ -20,7 +20,7 @@ function promptUser() {
             },
             {
                 type: 'list',
-                name: 'shapes',
+                name: 'shape',
                 message: 'Choose a shape:',
                 choices: ['Circle', 'Triangle', 'Square'],
             },
@@ -40,7 +40,10 @@ function promptUser() {
 }
 
 function generateSVG(text, textColor, shape, shapeColor) {
+
+    console.log('Shape:', shape);
     let shapeObj;
+
     switch (shape){
         case 'Circle':
             shapeObj = new Circle();
@@ -59,12 +62,16 @@ function generateSVG(text, textColor, shape, shapeColor) {
 
     const svg = `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     ${shapeObj.render()}
-    <text x="100" y="180" font-family="Arial" font-size="16" fill="${textColor}">${text}</text>
+    <text x="150" y="150" font-size="60" text-anchor="middle" fill="${textColor}">${text}</text>
   </svg>`;
 
-  fs.writeFile('logo.svg', svg);
-
-  console.log('Generated logo.svg');
+  fs.writeFile('./examples/logo.svg', svg, (err) => {
+    if (err) {
+        console.log('Error writing file:', err);
+        return;
+    }
+    console.log('Generated logo.svg');
+  });
 }
 
 promptUser().then(answers => {
