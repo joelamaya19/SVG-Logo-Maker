@@ -47,9 +47,9 @@ For a demonstration of the application's functionality, please refer to the vide
 - [Inquirer ](https://www.npmjs.com/package/inquirer): For collecting user inputs.
 - [Jest ](https://www.npmjs.com/package/jest): For running tests.
 
-## Links
+## Credits
 
-[Repo](https://github.com/joelamaya19/SVG-Logo-Maker)
+N/A
 
 ## License
 
