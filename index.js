@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const { Circle, Triangle, Square } = require('./lib/shapes');
+const SVG = require('./lib/svg');
 
 function promptUser() {
     return new Promise((resolve, reject) => {
@@ -40,8 +41,10 @@ function promptUser() {
 }
 
 function generateSVG(text, textColor, shape, shapeColor) {
+    const svg = new SVG();
 
     console.log('Shape:', shape); // For Debugging
+
     let shapeObj;
 
     switch (shape){
@@ -59,22 +62,18 @@ function generateSVG(text, textColor, shape, shapeColor) {
     }
 
     shapeObj.setColor(shapeColor);
-
-    const svg = `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-
-    ${shapeObj.render()}
-
-    <text x="150" y="150" font-size="60" text-anchor="middle" fill="${textColor}">${text}</text>
+    svg.setText(text, textColor);
+    svg.setShape(shapeObj);
     
-</svg>`;
+    const svgMarkup = svg.render();
 
-  fs.writeFile('./examples/logo.svg', svg, (err) => {
-    if (err) {
-        console.log('Error writing file:', err);
-        return;
-    }
-    console.log('Generated logo.svg');
-  });
+    fs.writeFile('./examples/logo.svg', svgMarkup, (err) => {
+        if (err) {
+            console.log('Error writing file:', err);
+            return;
+        }
+        console.log('Generated logo.svg');
+    });
 }
 
 promptUser().then(answers => {
