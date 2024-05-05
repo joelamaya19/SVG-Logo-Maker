@@ -40,7 +40,7 @@ Here's an example of a logo generated using the SVG Logo Maker:
 
 ## Walkthrough Video
 
-For a demonstration of the application's functionality, please refer to the video linked here: (walkthrough video coming soon).
+For a demonstration of the application's functionality, please refer to the video linked here: [Link to walkthrough video](https://drive.google.com/file/d/1DxVXmc3KDx16wPNji2oUBH2SICc7mHIc/preview).
 
 ## Dependencies
 
